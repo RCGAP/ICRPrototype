@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>I Can Relate</title>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h2 class="title" id="author"></h2>
+            <p class="lyrics" id="text"></p>
+            <div class="links">
+                <div class="spotify" id="spotify"></div>
+                    <div class="button-box">
+                        <button class="button--green" id="new-quote">
+                        Choose a new song
+                    </button>
+                    </div>
+                </div>
+            </div>
+
+    
+</body>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    
+    // SCRIPT
+
+
+    //Array contenant les morceaux
+    const QUOTES = [
+        {
+            quote: 'Im scared to get close and I hate being alone I long for that feeling to not feel at all </br> The higher I get, the lower Ill sink </br> I cant drown my demons, they know how to swim?',
+            origin: 'Bring me the horizon - Can You Feel My Heart',
+            spotify: '<iframe src=https://open.spotify.com/embed/track/0WSa1sucoNRcEeULlZVQXj?si=UV397rmbS-CgEBIP2hJB_Q width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>',
+        },
+        {
+            quote: "All this emptiness inside </br> I can’t fill the void in my mind </br> Sometimes I just wanna die </br> Wish that I could tell you why </br> Is it all inside my head?",
+            origin: 'I Prevail - Paranoid',
+            spotify: '<iframe src="https://open.spotify.com/embed/track/7dENhnDxTHnzGtpMrsJ72w" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>',
+        },
+        {
+            quote: "Cos I think I’ve lost half my mind</br> Fighting my addiction Ive been killing wasting time I’m not alright</br> And I can do it if I want to</br>I can do it if I want to</br> I don’t care if it hurts me</br> I care if I hurt you",
+            origin: 'Dream State - White lies',
+            spotify: '<iframe src="https://open.spotify.com/embed/track/17XhaLSkXQmFKUt7pimjEY?si=OHMUEg7bRbifbJz2eaW_-g width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>',
+        },
+        {
+            quote: "Everything you say to me Takes me one step closer to the edge</br> And I’m about to break</br> I need a little room to breathe<br> ’Cause I’m one step closer to the edge</br> And I’m about to break",
+            origin: 'Linkin Park - One Step Closer',
+            spotify: '<iframe src="https://open.spotify.com/embed/track/3K4HG9evC7dg3N0R9cYqk4?si=gPG6Gt46T_Cb94UAmzcN-w width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>',
+        },
+        {
+            quote: "Do you remember when you said to me</br> And I’m about to break</br> ’My friend, hope is a prison.’<br> Hope is a prison</br> Of all the patterns that I could create</br>I built a labyrinth with no escape</br>To keep my 'self' under lock and key</br>I am my own worst enemy",
+            origin: "Architects - Gone With The Wind",
+            spotify: '<iframe src="https://open.spotify.com/embed/track/6w9PFIfsLZvzo09nfmqjxQ?si=zRF3GTkGQrq9L_5wSW7d_w width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>',
+        },
+
+    ];
+
+
+    //Will be used as values to call on when displaying the quote data for the user
+    let currentQuote = '';
+    let currentOrigin = '';
+    let currentSpotify = '';
+
+    function getRandomQuote() {
+        return QUOTES[Math.floor(Math.random() * QUOTES.length)];
+    }
+
+
+    function getQuote() {
+
+        let randomQuote = getRandomQuote();
+        currentQuote = randomQuote.quote;
+        currentOrigin = randomQuote.origin;
+        currentSpotify = randomQuote.spotify;
+
+
+        //Current = ce qui est afficher
+        $('.lyrics').animate(
+            { opacity: 0 },
+            500,
+            function () {
+                $(this).animate(
+                    { opacity: 1 },
+                    500
+                );
+                $('#text').html(currentQuote);
+            }
+        );
+
+        $('.title').animate(
+            { opacity: 0 },
+            500,
+            function () {
+                $(this).animate(
+                    { opacity: 1 },
+                    500
+                );
+                $('#author').text(currentOrigin);
+            }
+        );
+        $('.spotify').animate(
+            { opacity: 0 },
+            500,
+            function () {
+                $(this).animate(
+                    { opacity: 1 },
+                    500
+                );
+                $('#spotify').html(currentSpotify);
+            }
+        );
+    }
+
+    $(document).ready(getQuote);
+
+    $('#new-quote').click(getQuote);
+
+    $('#tweet-quote').click(function () {
+        window.open(
+            "https://twitter.com/intent/tweet?text=" + currentQuote + ' -' + currentOrigin + ' -' + currentSpotify
+        );
+        return null;
+    });</script>
+    </html>
