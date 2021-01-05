@@ -14,10 +14,10 @@
             <div class="links">
                 <div class="spotify" id="spotify"></div>
                     <div class="button-box">
-                        <button class="button--green" id="new-quote">
+                        <button class="button--green" id="relate">
                         I can relate
                         </button>
-                        <button class="button--red" id="new-quote">
+                        <button class="button--red" id="dontRelate">
                         I don't relate
                         </button>
                     </div>
@@ -122,9 +122,9 @@
 
     $(document).ready(getQuote);
 
-    $('#new-quote').click(getQuote);
+    $('#relate').click(getQuote);
 
-    $('#tweet-quote').click(function () {
+    $('#dontRelate').click(function () {
         window.open(
             "https://twitter.com/intent/tweet?text=" + currentQuote + ' -' + currentOrigin + ' -' + currentSpotify
         );
