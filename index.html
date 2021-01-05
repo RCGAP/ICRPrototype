@@ -123,8 +123,10 @@
     $(document).ready(getQuote);
 
     $('#relate').click(getQuote);
+    
+    $('#dontRelate').click(getQuote);
 
-    $('#dontRelate').click(function () {
+    $('#document').click(function () {
         window.open(
             "https://twitter.com/intent/tweet?text=" + currentQuote + ' -' + currentOrigin + ' -' + currentSpotify
         );
